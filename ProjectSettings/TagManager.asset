@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - lmao
+  - vbuck
+  - burger
+  - enemy
+  - ThanosL
+  - ThanosGU
+  - ThanosGR
+  - ThanosR
+  - slow
+  - fast
+  - double
+  - shield
+  - ThanosJUL
+  - repair
+  - timer
+  - reverse
+  - virus
+  - maparrow
+  - cararrow
+  - large
+  - small
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - background
+  - char
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 3598250487
+    locked: 0
+  - name: snow
+    uniqueID: 3397443557
+    locked: 0
+  - name: char
+    uniqueID: 4108294615
+    locked: 0
