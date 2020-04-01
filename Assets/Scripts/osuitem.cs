@@ -11,12 +11,13 @@ public class osuitem : MonoBehaviour
         PlayerPrefs.SetInt("spawns", PlayerPrefs.GetInt("spawns", 0) + 1);
     }
 
-    void Update()
+    void Update() 
     {
-        gameObject.transform.Translate(Vector3.right * -Speed * Time.deltaTime);
-        if (transform.position.x < -10.5)
+        gameObject.transform.Translate(Vector3.right * -Speed * Time.deltaTime); //move obj
+
+        if (transform.position.x < -10.5) //miss
         {
-            if (gameObject.tag == "large")
+            if (gameObject.tag == "large") 
             {
                 catchSpawner.osumaxscore += catchcollision.largescore;
                 catchSpawner.osumiss += catchcollision.largescore;
@@ -33,5 +34,23 @@ public class osuitem : MonoBehaviour
             }
             Destroy(this);
         }
+    }
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.transform.position.z != 65)
+        {
+            if (collider.gameObject.transform.position.z == 1) //whistle
+                GetComponent<AudioSource>().clip = catchcollision.whistle;
+            else if (collider.gameObject.transform.position.z == 2) //finish
+                GetComponent<AudioSource>().clip = catchcollision.finish;
+            else if (collider.gameObject.transform.position.z == 3) //clap
+                GetComponent<AudioSource>().clip = catchcollision.clap;
+            else if (collider.gameObject.transform.position.z == 3) //drumwhistle
+                GetComponent<AudioSource>().clip = catchcollision.clap;
+            else
+                GetComponent<AudioSource>().clip = catchcollision.normal;
+            GetComponent<AudioSource>().Play();
+        }
+        transform.position = new Vector3(100, 100); //teleportera iväg föremålet men gör så ljudet spelas
     }
 }

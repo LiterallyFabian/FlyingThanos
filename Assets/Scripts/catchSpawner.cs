@@ -51,7 +51,7 @@ public class catchSpawner : MonoBehaviour
         else
         {
             yield return new WaitForSeconds(wait / 1000f - 0.80f);
-            Instantiate(smallitem, new Vector3(9.5f, (float)(2.9 / 160 * x -3.5f), 89), Quaternion.identity);
+            Instantiate(smallitem, new Vector3(9.5f, (float)(2.9 / 160 * x -3.5f), 65), Quaternion.identity);
         }
     }
 
@@ -65,7 +65,7 @@ public class catchSpawner : MonoBehaviour
             path = $"{Directory.GetCurrentDirectory()}\\Assets\\testsongs\\";
 
         maps = System.IO.Directory.GetFiles(path, "*.osu"); //load all the maps + audio
-        songs = System.IO.Directory.GetFiles(path, "*.wav");
+        songs = System.IO.Directory.GetFiles(path, "*.ogg");
         System.Random rnd = new System.Random();
         int selectedmap = rnd.Next(maps.Length);
 
@@ -100,19 +100,23 @@ public class catchSpawner : MonoBehaviour
             int pos = Convert.ToInt32(data[1]);
             int hitsound = Convert.ToInt32(data[3]);
             int item = rnd.Next(4);
-            if (data[4] == "1") 
+            if (data.Length > 7) //slider
             {
-                Debug.Log("aaaaaaaa" + data[1]);
                 StartCoroutine(spawn(pos, delay, true, 1, item));
 
-                for (int loop =0; loop < int.Parse(data[6]); loop++)
+                int diff = rnd.Next(-40, 40);
+
+
+                int sliderlength = Mathf.FloorToInt(float.Parse(data[7])); //slider length 
+                int size = Mathf.RoundToInt(sliderlength / 34);
+                for (int loop = 0; loop < size; loop++)
                 {
-                    Debug.Log("yes");
-                    StartCoroutine(spawn(pos + rnd.Next(-30, 30), int.Parse(data[7])+delay, true, hitsound, item)); //spawn small item
+                    StartCoroutine(spawn(pos +  diff * loop+1, loop*40 + delay, false, hitsound, item)); //spawn small item
                 }
-                   
+                
+                StartCoroutine(spawn(pos + diff*size+1, delay + (size+1)*40, true, 65, item)); //65 = no hitsound
             }
-            else
+            else //large item
               StartCoroutine(spawn(pos, delay, true, hitsound,item)); //spawn large item
         }
     }

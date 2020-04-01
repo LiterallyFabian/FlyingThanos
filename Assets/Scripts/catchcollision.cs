@@ -6,12 +6,12 @@ using System;
 
 public class catchcollision : MonoBehaviour
 {
-    public AudioClip normal;
-    public AudioClip whistle;
-    public AudioClip clap;
-    public AudioClip finish;
-    public AudioClip tick;
-    public AudioClip quiet;
+    public static AudioClip normal;
+    public static AudioClip whistle;
+    public static AudioClip clap;
+    public static AudioClip finish;
+    public static AudioClip tick;
+    public static AudioClip quiet;
     private double acc;
     public static int smallscore = 2;
     public static int largescore = 13;
@@ -37,28 +37,16 @@ public class catchcollision : MonoBehaviour
 
         }
 
-        if (collider.gameObject.transform.position.z != 89)
-        {
-            if (collider.gameObject.transform.position.z == 1) //whistle
-                GetComponent<AudioSource>().clip = whistle;
-            else if (collider.gameObject.transform.position.z == 2) //finish
-                GetComponent<AudioSource>().clip = finish;
-            else if (collider.gameObject.transform.position.z == 3) //clap
-                GetComponent<AudioSource>().clip = clap;
-            else if (collider.gameObject.transform.position.z == 3) //drumwhistle
-                GetComponent<AudioSource>().clip = clap;
-            else
-                GetComponent<AudioSource>().clip = normal;
-            GetComponent<AudioSource>().Play();
-        }
-        Destroy(collider.gameObject);
-
     }
     void Update()
     {
         //Debug.Log($"Spawned: {catchSpawner.osumaxscore}  Catched: {catchSpawner.osuscore}  Missed: {catchSpawner.osumiss}  Acc: {Math.Round(acc, 2)}%  Hotel: Trivago");
         acc = catchSpawner.osuscore / catchSpawner.osumaxscore * 100;
-        GameObject.Find("acc").GetComponent<Text>().text = $"{Math.Round(acc, 2)}%";
+        if(catchSpawner.osuscore != 0)
+            GameObject.Find("acc").GetComponent<Text>().text = $"{Math.Round(acc, 2)}%";
+        else
+            GameObject.Find("acc").GetComponent<Text>().text = $"100%";
+
     }
 }
 //
