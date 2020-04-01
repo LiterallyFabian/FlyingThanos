@@ -35,7 +35,16 @@ public class playerSelecter : MonoBehaviour {
             thanos.GetComponent<SpriteRenderer>().sprite = damage3; 
         }
 
-
+        if(guiController.lifes == 92) //random unreachable thing to load resources, idk?
+        {
+            this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("0");
+            this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("1");
+            this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("2");
+            this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("3");
+            this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("4");
+            this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("5");
+            this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("thanosjul");
+        }
 
     }
     
