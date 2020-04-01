@@ -352,12 +352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c941c877b34c8494cb57622c0ab6d943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normal: {fileID: 8300000, guid: 004ef7fe650d3484ca736d934b03cd9f, type: 3}
-  whistle: {fileID: 8300000, guid: b1a4768bd1f7a8243a50dcf9f04a5518, type: 3}
-  clap: {fileID: 8300000, guid: bae00066b6f53e74dbe60abef54a9a84, type: 3}
-  finish: {fileID: 8300000, guid: 199166f8706b820408e6434821bb1992, type: 3}
-  tick: {fileID: 8300000, guid: fda47afea26cfaf4baf0c07f503341e4, type: 3}
-  quiet: {fileID: 0}
 --- !u!1001 &905526879
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class catchcollision : MonoBehaviour
     public static AudioClip finish;
     public static AudioClip tick;
     public static AudioClip quiet;
+    public static GameObject cameraobj;
     private double acc;
     public static int smallscore = 2;
     public static int largescore = 13;

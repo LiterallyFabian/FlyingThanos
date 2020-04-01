@@ -14,15 +14,15 @@ public class playerSelecter : MonoBehaviour {
 
 
 
+
     // Use this for initialization
     void Start () {
-
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>($"skins/{PlayerPrefs.GetInt("skin", 0)}");
+        this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>($"{PlayerPrefs.GetInt("skin", 0)}");
 
 
         if (guiController.lifes == 3 && guiController.sharpmode == true){

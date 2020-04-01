@@ -5,10 +5,18 @@ public class osuitem : MonoBehaviour
 {
     public static int Speed = 15;
     private bool notcollected = true;
+    private AudioClip whistle;
+    private AudioClip finish;
+    private AudioClip clap;
+    private AudioClip normal;
 
 
     void Start()
     {
+        whistle = (AudioClip)Resources.Load("whistle", typeof(AudioClip));
+        finish = (AudioClip)Resources.Load("finish", typeof(AudioClip));
+        clap = (AudioClip)Resources.Load("clap", typeof(AudioClip));
+        normal = (AudioClip)Resources.Load("normal", typeof(AudioClip));
         PlayerPrefs.SetInt("spawns", PlayerPrefs.GetInt("spawns", 0) + 1);
     }
 
@@ -35,25 +43,24 @@ public class osuitem : MonoBehaviour
             }
             Destroy(this);
         }
-        Debug.Log(transform.position.z);
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (transform.position.z != 65)
         {
             if (transform.position.z == 1) //whistle
-                GetComponent<AudioSource>().clip = catchcollision.whistle;
+                GetComponent<AudioSource>().clip = whistle;
             else if (transform.position.z == 2) //finish
-                GetComponent<AudioSource>().clip = catchcollision.finish;
+                GetComponent<AudioSource>().clip = finish;
             else if (transform.position.z == 3) //clap
-                GetComponent<AudioSource>().clip = catchcollision.clap;
-            else if (transform.position.z == 3) //drumwhistle
-                GetComponent<AudioSource>().clip = catchcollision.clap;
+                GetComponent<AudioSource>().clip = clap;
+            else if (transform.position.z == 4) //drumwhistle
+                GetComponent<AudioSource>().clip = clap;
             else
-                GetComponent<AudioSource>().clip = catchcollision.normal;
+                GetComponent<AudioSource>().clip = normal;
             GetComponent<AudioSource>().Play();
         }
         notcollected = false; //collected
-        transform.position = new Vector3(100, 100); //teleportera iväg föremålet men gör så ljudet spelas
+        transform.position = new Vector3(10, 10); //teleportera iväg föremålet men gör så ljudet spelas
     }
 }
