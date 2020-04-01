@@ -37,15 +37,15 @@ public class osuitem : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.transform.position.z != 65)
+        if (transform.position.z != 65)
         {
-            if (collider.gameObject.transform.position.z == 1) //whistle
+            if (transform.position.z == 1) //whistle
                 GetComponent<AudioSource>().clip = catchcollision.whistle;
-            else if (collider.gameObject.transform.position.z == 2) //finish
+            else if (transform.position.z == 2) //finish
                 GetComponent<AudioSource>().clip = catchcollision.finish;
-            else if (collider.gameObject.transform.position.z == 3) //clap
+            else if (transform.position.z == 3) //clap
                 GetComponent<AudioSource>().clip = catchcollision.clap;
-            else if (collider.gameObject.transform.position.z == 3) //drumwhistle
+            else if (transform.position.z == 3) //drumwhistle
                 GetComponent<AudioSource>().clip = catchcollision.clap;
             else
                 GetComponent<AudioSource>().clip = catchcollision.normal;
