@@ -4,6 +4,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 
+/[Ll]ibrary/PlayerDataCache/
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
