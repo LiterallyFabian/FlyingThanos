@@ -4,6 +4,7 @@ using System.Collections;
 public class osuitem : MonoBehaviour
 {
     public static int Speed = 15;
+    private bool notcollected = true;
 
 
     void Start()
@@ -15,7 +16,7 @@ public class osuitem : MonoBehaviour
     {
         gameObject.transform.Translate(Vector3.right * -Speed * Time.deltaTime); //move obj
 
-        if (transform.position.x < -10.5) //miss
+        if (transform.position.x < -10.5 && notcollected) //miss
         {
             if (gameObject.tag == "large") 
             {
@@ -34,6 +35,7 @@ public class osuitem : MonoBehaviour
             }
             Destroy(this);
         }
+        Debug.Log(transform.position.z);
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -51,6 +53,7 @@ public class osuitem : MonoBehaviour
                 GetComponent<AudioSource>().clip = catchcollision.normal;
             GetComponent<AudioSource>().Play();
         }
+        notcollected = false; //collected
         transform.position = new Vector3(100, 100); //teleportera iväg föremålet men gör så ljudet spelas
     }
 }
