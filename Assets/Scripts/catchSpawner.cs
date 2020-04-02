@@ -68,7 +68,7 @@ public class catchSpawner : MonoBehaviour
         songs = System.IO.Directory.GetFiles(path, "*.ogg");
         System.Random rnd = new System.Random();
         int selectedmap = rnd.Next(maps.Length);
-
+        Debug.Log($"Song picked: {maps[selectedmap]}\nRelated audio: {songs[selectedmap]}" );
         string[] song = File.ReadAllLines(maps[selectedmap]);
         bool foundobjects = false;
 
