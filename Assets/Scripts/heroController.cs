@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class heroController : MonoBehaviour 
 {
@@ -17,11 +18,13 @@ public class heroController : MonoBehaviour
     private float minPositionX;
     public static float delay;
 
+    private bool lookright = true;
+
     void Start () 
 	{
 		//Högst upp på skärmen. 
 		maxPositionY=(Camera.main.orthographicSize);
-		//Längst ned på skärmen. Värdet 0.8 fick jag testa mig fram till.
+		//Längst ned på skärmen
 		minPositionY=-(Camera.main.orthographicSize+0.8f);
         Time.timeScale = 1;
         maxPositionX = 10;
@@ -34,7 +37,7 @@ public class heroController : MonoBehaviour
 		yDir = Input.GetAxis("Vertical")*verticalSpeed;
 		//Ger fart åt objektets rigidbody. Vector3.up är samma som Vector3(0, 1, 0)
 		gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.up*yDir);
-        if (guiController.pvpmode == true)
+        if (guiController.pvpmode == true || SceneManager.GetActiveScene().name == "start")
         {
             yDir = Input.GetAxis("Horizontal") * horizontalSpeed;
             gameObject.GetComponent<Rigidbody2D>().AddForce(Vector3.right * yDir);

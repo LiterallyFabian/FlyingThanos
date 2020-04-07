@@ -41,17 +41,16 @@ public class catchSpawner : MonoBehaviour
     }
     IEnumerator spawn(int x, int wait, bool type, int hitsound, int item)
     {
-        
-        if (type)
+        if (type) //large
         {
             yield return new WaitForSeconds(wait / 1000f - 0.85f); //högre = snabbare
-            Instantiate(items[item], new Vector3(9.5f, (float)(2.9 / 160 * x - 3.5f), hitsound), Quaternion.identity); //spawnar item på f(x), hitsound
+            Instantiate(items[item], new Vector3(9.5f, (float)(2.9 / 160 * x - 4.8f), hitsound), Quaternion.identity); //spawnar item på f(x), hitsound
         }
 
-        else
+        else //small
         {
             yield return new WaitForSeconds(wait / 1000f - 0.80f);
-            Instantiate(smallitem, new Vector3(9.5f, (float)(2.9 / 160 * x -3.5f), 65), Quaternion.identity);
+            Instantiate(smallitem, new Vector3(9.5f, (float)(2.9 / 160 * x - 4.8f), 65), Quaternion.identity);
         }
     }
 
@@ -100,24 +99,48 @@ public class catchSpawner : MonoBehaviour
             int pos = Convert.ToInt32(data[1]);
             int hitsound = Convert.ToInt32(data[3]);
             int item = rnd.Next(4);
+            
+
             if (data.Length > 7) //slider
             {
+                int repeats = Convert.ToInt32(data[6]);
                 StartCoroutine(spawn(pos, delay, true, 1, item));
+                //Debug.Log($"Start item for slider {i} spawned successfully.");
 
-                int diff = rnd.Next(-40, 40);
+                int diff = rnd.Next(5, 20);
+                if (rnd.Next(1) == 1) diff = diff * -1;
 
 
                 int sliderlength = Mathf.FloorToInt(float.Parse(data[7])); //slider length 
-                int size = Mathf.RoundToInt(sliderlength / 34);
+                int size = Mathf.RoundToInt(sliderlength / 19.5f) * repeats;
+                int where = 0;
+                bool dir = true;
+                if (diff < 0) dir = false;  //false dir = negative
+
                 for (int loop = 0; loop < size; loop++)
                 {
-                    StartCoroutine(spawn(pos +  diff * loop+1, loop*40 + delay, false, hitsound, item)); //spawn small item
+                    int position = pos + (where*diff);
+                    if (position > 500 || position < 20) //change direction if it will be too high up, or far down
+                    {
+                        position = pos + (where * diff);
+                        dir = !dir; //toggle dir
+                    }
+                    if (dir) where++;
+                    else where--;
+                    //Debug.Log($"Where: {where}\ndiff: {diff}\npos: {pos}\ndir: {dir}\nFINAL: {position}");
+                    StartCoroutine(spawn(position, loop * 40 + delay, false, hitsound, item)); //spawn small item
+
+                    
                 }
-                
-                StartCoroutine(spawn(pos + diff*size+1, delay + (size+1)*40, true, 65, item)); //65 = no hitsound
+
+                StartCoroutine(spawn(pos + (where * diff), delay + (size + 1) * 40, true, 65, item)); //65 = no hitsound
+                //Debug.Log($"End item for slider {i} spawned successfully.");
             }
             else //large item
-              StartCoroutine(spawn(pos, delay, true, hitsound,item)); //spawn large item
+            {
+               // Debug.Log($"Large item {i} spawned successfully.");
+                StartCoroutine(spawn(pos, delay, true, hitsound, item)); //spawn large item
+            }
         }
     }
 }

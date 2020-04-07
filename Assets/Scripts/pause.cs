@@ -38,7 +38,7 @@ public class pause : MonoBehaviour
         if (quitconf == true && Input.GetKeyDown(KeyCode.Space) && pausePanel.activeInHierarchy)
         {
             quitconf = false;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(0);
         }
     }
     private void PauseGame()
