@@ -65,10 +65,8 @@ public class catchSpawner : MonoBehaviour
     {
         string[] maps;
         string[] songs;
-        string path = $"{Directory.GetCurrentDirectory()}\\songs\\";
+        string path = $"{Application.dataPath}/songs/";
 
-        if (Application.isEditor)
-            path = $"{Directory.GetCurrentDirectory()}\\Assets\\testsongs\\";
 
         maps = System.IO.Directory.GetFiles(path, "*.osu"); //load all the maps + audio
         songs = System.IO.Directory.GetFiles(path, "*.ogg");

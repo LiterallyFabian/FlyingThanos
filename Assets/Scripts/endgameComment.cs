@@ -13,6 +13,7 @@ public class endgameComment : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        GameObject.Find("/Canvas/HelpMenu/catch").GetComponent<Text>().text = $"Place an .osu file with its corresponding audio\nin OGG format in the song folder to install.\n\nPath: \n{Application.dataPath}/songs/";
         Cursor.visible = true;
         PlayerPrefs.SetInt("totalscore", PlayerPrefs.GetInt("totalscore", 0) + guiController.scoreHit);
         CommentObj = GameObject.Find("comment");

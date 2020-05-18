@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -161,6 +162,14 @@ public class MainButtonCtrl : MonoBehaviour
     public void OpenScene(int id)
     {
         SceneManager.LoadScene(id);
+    }
+    public void OpenFolder(string path)
+    {
+        Process.Start("explorer.exe", $@"{Application.dataPath}/{path}/".Replace("/", "\\"));
+    }
+    public void OpenLink(string link)
+    {
+        Process.Start(link);
     }
 
 }
