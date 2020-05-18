@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/osu.unity
+- path: Assets/Scenes/skins.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

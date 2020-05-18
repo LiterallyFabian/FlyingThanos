@@ -105,7 +105,7 @@ public class catchSpawner : MonoBehaviour
             {
                 int repeats = Convert.ToInt32(data[6]);
                 StartCoroutine(spawn(pos, delay, true, 1, item));
-                //Debug.Log($"Start item for slider {i} spawned successfully.");
+
 
                 int diff = rnd.Next(5, 20);
                 if (rnd.Next(1) == 1) diff = diff * -1;
@@ -127,18 +127,15 @@ public class catchSpawner : MonoBehaviour
                     }
                     if (dir) where++;
                     else where--;
-                    //Debug.Log($"Where: {where}\ndiff: {diff}\npos: {pos}\ndir: {dir}\nFINAL: {position}");
                     StartCoroutine(spawn(position, loop * 40 + delay, false, hitsound, item)); //spawn small item
 
                     
                 }
 
                 StartCoroutine(spawn(pos + (where * diff), delay + (size + 1) * 40, true, 65, item)); //65 = no hitsound
-                //Debug.Log($"End item for slider {i} spawned successfully.");
             }
             else //large item
-            {
-               // Debug.Log($"Large item {i} spawned successfully.");
+            { 
                 StartCoroutine(spawn(pos, delay, true, hitsound, item)); //spawn large item
             }
         }

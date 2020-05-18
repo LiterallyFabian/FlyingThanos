@@ -26,17 +26,12 @@ public class MainButtonCtrl : MonoBehaviour
         guiController.newmode = false;
         guiController.sharpmode = false;
         guiController.pvpmode = false;
-        guiController.osu = false;
+        guiController.osu = false; 
         backgroundMovement.backgroundSpeedBack = 0.02f;
         backgroundMovement.backgroundSpeedFront = 0.32f;
         backgroundMovement.backgroundSpeedMiddle = 0.23f;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void StartSwarm()
     {
         guiController.swarmmode = true;
