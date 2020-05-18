@@ -9,14 +9,16 @@ public class osuitem : MonoBehaviour
     private AudioClip finish;
     private AudioClip clap;
     private AudioClip normal;
+    private int sound = 65;
 
 
     void Start()
     {
-        whistle = (AudioClip)Resources.Load("whistle", typeof(AudioClip));
-        finish = (AudioClip)Resources.Load("finish", typeof(AudioClip));
-        clap = (AudioClip)Resources.Load("clap", typeof(AudioClip));
-        normal = (AudioClip)Resources.Load("normal", typeof(AudioClip));
+        sound = (int)transform.position.z;
+        whistle = (AudioClip)Resources.Load("sounds/hitwhistle2", typeof(AudioClip));
+        finish = (AudioClip)Resources.Load("sounds/hitfinish4", typeof(AudioClip));
+        clap = (AudioClip)Resources.Load("sounds/hitclap8", typeof(AudioClip));
+        normal = (AudioClip)Resources.Load("sounds/hitnormal0", typeof(AudioClip));
         PlayerPrefs.SetInt("spawns", PlayerPrefs.GetInt("spawns", 0) + 1);
     }
 
@@ -46,21 +48,21 @@ public class osuitem : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (transform.position.z != 65)
+        if (sound != 65)
         {
-            if (transform.position.z == 1) //whistle
+            if (sound == 2) //whistle
                 GetComponent<AudioSource>().clip = whistle;
-            else if (transform.position.z == 2) //finish
+            else if (sound == 4) //finish
                 GetComponent<AudioSource>().clip = finish;
-            else if (transform.position.z == 3) //clap
-                GetComponent<AudioSource>().clip = clap;
-            else if (transform.position.z == 4) //drumwhistle
+            else if (sound == 8) //clap
                 GetComponent<AudioSource>().clip = clap;
             else
                 GetComponent<AudioSource>().clip = normal;
             GetComponent<AudioSource>().Play();
+            Debug.Log(sound);
+            GameObject.Find("/Canvas/acc").GetComponent<Animator>().Play("getbig", -1, 0);
         }
         notcollected = false; //collected
-        transform.position = new Vector3(10, 10); //teleportera iväg föremålet men gör så ljudet spelas
+        transform.position = new Vector3(10, 10, transform.position.z); //teleportera iväg föremålet men gör så ljudet spelas
     }
 }

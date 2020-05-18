@@ -114,11 +114,11 @@ public class guiController : MonoBehaviour
 		if(pvpmode == true && playTime<=0 && playTimepvp<=0)
 		{
             lastmodepvp = true;
-			SceneManager.LoadScene (2);
+			SceneManager.LoadScene (0);
 		} else if (pvpmode == false && playTime <= 0)
         {
             lastmodepvp = false;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(0);
         }
         if(pvpmode == true && playTime <= 0)
         {
@@ -135,7 +135,7 @@ public class guiController : MonoBehaviour
 
         //om man kör sharp shurikens & har 0 liv så dör man
         if (lifes == 0 && sharpmode == true){
-            SceneManager.LoadScene (2);
+            SceneManager.LoadScene (0);
         }
 
         /*
@@ -306,7 +306,7 @@ public class guiController : MonoBehaviour
         if (pvpmode == false && playTime <= 0)
         {
             lastmodepvp = false;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(0);
         }
     }
 

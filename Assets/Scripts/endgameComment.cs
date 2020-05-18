@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -12,44 +13,45 @@ public class endgameComment : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Cursor.visible = true;
         PlayerPrefs.SetInt("totalscore", PlayerPrefs.GetInt("totalscore", 0) + guiController.scoreHit);
         CommentObj = GameObject.Find("comment");
         CommentTextComp = CommentObj.GetComponent<Text>();
         fixedscoreone = guiController.scoreHit - guiController.scoreHitpvp;
         fixedscoretwo = guiController.scoreHitpvp - guiController.scoreHit;
-        if (guiController.lastmodepvp == false)
+        if (guiController.lastmodepvp == false && guiController.scoreHit != 0)
         {
             if (guiController.scoreHit < 25)
             {
-                CommentTextComp.text = "no comment";
+                CommentTextComp.text = "No comment...";
             }
             if (guiController.scoreHit >= 25 && guiController.scoreHit <= 50)
             {
-                CommentTextComp.text = "did you even try?";
+                CommentTextComp.text = "Did you even try?";
             }
             if (guiController.scoreHit >= 51 && guiController.scoreHit <= 75)
             {
-                CommentTextComp.text = "at least you tried! I think..";
+                CommentTextComp.text = "At least you tried! I think..";
             }
             if (guiController.scoreHit >= 76 && guiController.scoreHit <= 125)
             {
-                CommentTextComp.text = "try to avoid the shurikens next time";
+                CommentTextComp.text = "Try to avoid the shurikens next time";
             }
             if (guiController.scoreHit >= 126 && guiController.scoreHit <= 175)
             {
-                CommentTextComp.text = "better luck next time!";
+                CommentTextComp.text = "Better luck next time!";
             }
             if (guiController.scoreHit >= 251 && guiController.scoreHit <= 275)
             {
-                CommentTextComp.text = "nice score!";
+                CommentTextComp.text = "Nice score!";
             }
             if (guiController.scoreHit >= 176 && guiController.scoreHit <= 199)
             {
-                CommentTextComp.text = "almost 200!";
+                CommentTextComp.text = "Almost 200!";
             }
             if (guiController.scoreHit >= 200 && guiController.scoreHit <= 225)
             {
-                CommentTextComp.text = "above 200!";
+                CommentTextComp.text = "Above 200!";
             }
             if (guiController.scoreHit >= 226 && guiController.scoreHit <= 250)
             {
@@ -57,7 +59,7 @@ public class endgameComment : MonoBehaviour {
             }
             if (guiController.scoreHit >= 251 && guiController.scoreHit <= 280)
             {
-                CommentTextComp.text = "good job!";
+                CommentTextComp.text = "Good job!";
             }
             if (guiController.scoreHit >= 281 && guiController.scoreHit <= 299)
             {
@@ -65,15 +67,15 @@ public class endgameComment : MonoBehaviour {
             }
             if (guiController.scoreHit >= 300 && guiController.scoreHit <= 330)
             {
-                CommentTextComp.text = "nice!";
+                CommentTextComp.text = "Nice!";
             }
             if (guiController.scoreHit >= 331 && guiController.scoreHit <= 360)
             {
-                CommentTextComp.text = "awesome score!";
+                CommentTextComp.text = "Awesome score!";
             }
             if (guiController.scoreHit >= 361 && guiController.scoreHit <= 399)
             {
-                CommentTextComp.text = "close to 400!";
+                CommentTextComp.text = "Close to 400!";
             }
             if (guiController.scoreHit >= 400 && guiController.scoreHit <= 419)
             {
@@ -85,15 +87,15 @@ public class endgameComment : MonoBehaviour {
             }
             if (guiController.scoreHit >= 451 && guiController.scoreHit <= 499)
             {
-                CommentTextComp.text = "nice score bro!";
+                CommentTextComp.text = "Nice score bro!";
             }
             if (guiController.scoreHit >= 500 && guiController.scoreHit <= 540)
             {
-                CommentTextComp.text = "above 500??!";
+                CommentTextComp.text = "Above 500??!";
             }
             if (guiController.scoreHit >= 541 && guiController.scoreHit <= 580)
             {
-                CommentTextComp.text = "crazy score!";
+                CommentTextComp.text = "Crazy score!";
             }
             if (guiController.scoreHit >= 581 && guiController.scoreHit <= 640)
             {
@@ -101,15 +103,15 @@ public class endgameComment : MonoBehaviour {
             }
             if (guiController.scoreHit >= 641 && guiController.scoreHit <= 680)
             {
-                CommentTextComp.text = "epic score! good job!";
+                CommentTextComp.text = "Epic score! good job!";
             }
             if (guiController.scoreHit >= 681 && guiController.scoreHit <= 720)
             {
-                CommentTextComp.text = "insane score!";
+                CommentTextComp.text = "Insane score!";
             }
             if (guiController.scoreHit > 721)
             {
-                CommentTextComp.text = guiController.scoreHit + "  points? damn, good job!";
+                CommentTextComp.text = guiController.scoreHit + "  points? damn, well played!";
             }
         }
         else if (guiController.lastmodepvp == true && guiController.scoreHit > guiController.scoreHitpvp)
@@ -128,6 +130,11 @@ public class endgameComment : MonoBehaviour {
         {
             CommentTextComp.text = "New highscore!!";
             PlayerPrefs.SetInt("highscore", guiController.scoreHit);
+        }
+        if (catchcollision.acc != 0)
+        {
+            CommentTextComp.text = $"You collected {Math.Round(catchcollision.acc, 2)}% of the fruits!";
+            catchcollision.acc = 0;
         }
         
     }

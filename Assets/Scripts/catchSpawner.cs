@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using UnityEngine.SceneManagement;
 
 public class catchSpawner : MonoBehaviour
 {
@@ -53,6 +54,12 @@ public class catchSpawner : MonoBehaviour
             Instantiate(smallitem, new Vector3(9.5f, (float)(2.9 / 160 * x - 4.8f), 65), Quaternion.identity);
         }
     }
+    IEnumerator goback(int delay)
+    {
+        Debug.LogError("back");
+        yield return new WaitForSeconds(delay/1000+3.2f);
+        SceneManager.LoadScene(0);
+    }
 
     public void AddFruits()
     {
@@ -98,8 +105,10 @@ public class catchSpawner : MonoBehaviour
             int delay = Convert.ToInt32(data[2]);
             int pos = Convert.ToInt32(data[1]);
             int hitsound = Convert.ToInt32(data[3]);
+            Debug.Log("hitsound: " + hitsound);
             int item = rnd.Next(4);
-            
+
+            if (i == AllFruitsArray.Length-1) StartCoroutine(goback(delay)); 
 
             if (data.Length > 7) //slider
             {
@@ -127,12 +136,12 @@ public class catchSpawner : MonoBehaviour
                     }
                     if (dir) where++;
                     else where--;
-                    StartCoroutine(spawn(position, loop * 40 + delay, false, hitsound, item)); //spawn small item
+                    StartCoroutine(spawn(position, loop * 40 + delay, false, 65, item)); //spawn small item
 
                     
                 }
 
-                StartCoroutine(spawn(pos + (where * diff), delay + (size + 1) * 40, true, 65, item)); //65 = no hitsound
+                StartCoroutine(spawn(pos + (where * diff), delay + (size + 1) * 40, true, hitsound, item)); //65 = no hitsound
             }
             else //large item
             { 

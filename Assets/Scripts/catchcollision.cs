@@ -13,9 +13,9 @@ public class catchcollision : MonoBehaviour
     public static AudioClip tick;
     public static AudioClip quiet;
     public static GameObject cameraobj;
-    private double acc;
+    public static double acc;
     public static int smallscore = 2;
-    public static int largescore = 13;
+    public static int largescore = 10;
 
     void OnTriggerEnter2D(Collider2D collider)
     {

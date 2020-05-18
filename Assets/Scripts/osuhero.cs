@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class osuhero : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class osuhero : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
         if (Input.GetKey(KeyCode.LeftShift))
         {
             verticalSpeed = 250f;

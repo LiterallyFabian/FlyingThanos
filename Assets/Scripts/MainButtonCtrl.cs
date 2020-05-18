@@ -12,6 +12,16 @@ public class MainButtonCtrl : MonoBehaviour
     private Text BurgerText;
     private Text ShurikenText;
     private Text InfoText;
+
+    //collectiables 
+    public Sprite vb;
+    public Sprite sl;
+    public Sprite bu;
+    public Sprite sh;
+    public Sprite fr1;
+    public Sprite fr2;
+    public Sprite fr3;
+    public Sprite fr4;
     void Start()
     {
         TimerText = GameObject.Find("Timer").GetComponent<Text>();
@@ -111,12 +121,16 @@ public class MainButtonCtrl : MonoBehaviour
     }
     public void HoverOsu()
     {
-        VbuckText.text = "??";
-        SlurpText.text = "4p";
-        BurgerText.text = "3p";
-        ShurikenText.text = "-1hp";
+        VbuckText.text = "10p";
+        SlurpText.text = "10p";
+        BurgerText.text = "10p";
+        ShurikenText.text = "2p";
         InfoText.text = "thanos!catch\nCatch the fruits, don't miss too many!";
-        TimerText.text = "No time limit";
+        TimerText.text = "Depends";
+        GameObject.Find("/Canvas/objectinfo_panel/vbuck").GetComponent<Image>().sprite = fr1;
+        GameObject.Find("/Canvas/objectinfo_panel/lmao").GetComponent<Image>().sprite = fr2;
+        GameObject.Find("/Canvas/objectinfo_panel/burger").GetComponent<Image>().sprite = fr3;
+        GameObject.Find("/Canvas/objectinfo_panel/Shuriken").GetComponent<Image>().sprite = fr4;
     }
     public void StartSpeed()
     {
@@ -131,6 +145,13 @@ public class MainButtonCtrl : MonoBehaviour
         ShurikenText.text = "-3s";
         InfoText.text = "FLYING FAST\nFaster flying, less time, more points";
         TimerText.text = "time left: 40";
+    }
+    public void ResetIcons()
+    {
+        GameObject.Find("/Canvas/objectinfo_panel/vbuck").GetComponent<Image>().sprite = vb;
+        GameObject.Find("/Canvas/objectinfo_panel/lmao").GetComponent<Image>().sprite = sl;
+        GameObject.Find("/Canvas/objectinfo_panel/burger").GetComponent<Image>().sprite = bu;
+        GameObject.Find("/Canvas/objectinfo_panel/Shuriken").GetComponent<Image>().sprite = sh;
     }
     public void QuitGame()
     {

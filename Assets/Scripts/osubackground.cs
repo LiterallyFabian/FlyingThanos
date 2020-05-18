@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class osubackground : MonoBehaviour
+public class osubackground : MonoBehaviour // doesn't do shit
 {
     public float m_changeSpeed = 0.1f;
     public UnityEngine.UI.Image m_backgroundImage;
