@@ -85,17 +85,7 @@ public class powerupManager : MonoBehaviour
         Debug.Log("Slow started");
         collisions.powerupslowS = false;
         collisions.powerupslow = true;
-        //minskar sakta
-        flyingHitObjectsMovement.Speed = 8;
-        heroController.verticalSpeed = 100;
-        heroController.rotationdown = -39;
-        heroController.rotationup = 39;
-        pvpController.verticalSpeed = 100;
-        pvpController.rotationdown = -39;
-        pvpController.rotationup = 39;
-        yield return new WaitForSeconds(0.4f);
-        //detta är sifforna under gamet
-        flyingHitObjectsMovement.Speed = 6;
+        flyingHitObjectsMovement.Speed = 5;
         heroController.verticalSpeed = 50;
         heroController.rotationdown = -33;
         heroController.rotationup = 33;
@@ -106,21 +96,6 @@ public class powerupManager : MonoBehaviour
         //väntar 5.5s och sen ändrar tillbaka spawn interval
         yield return new WaitForSeconds(6f);
         flyingHitObjectsSpawn.spawninvterval = 0.3f;
-        //börjar sakta men säkert öka sifforna
-        yield return new WaitForSeconds(0.2f);
-        flyingHitObjectsMovement.Speed = 7;
-        heroController.verticalSpeed = 75;
-        heroController.rotationdown = -36;
-        heroController.rotationup = 36;
-        yield return new WaitForSeconds(0.2f);
-        heroController.verticalSpeed = 100;
-        flyingHitObjectsMovement.Speed = 8;
-        heroController.rotationdown = -40;
-        heroController.rotationup = 40;
-        pvpController.verticalSpeed = 100;
-        pvpController.rotationdown = -40;
-        pvpController.rotationup = 40;
-        yield return new WaitForSeconds(0.2f);
         GetComponent<AudioSource>().clip = speedup;
         GetComponent<AudioSource>().Play();
         collisions.powerupslow = false;

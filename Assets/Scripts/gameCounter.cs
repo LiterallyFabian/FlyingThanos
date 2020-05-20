@@ -55,11 +55,7 @@ public class gameCounter : MonoBehaviour
             PlayerPrefs.SetInt("spookymap", PlayerPrefs.GetInt("spookymap", 0) + 1);
         }
 
-
-        if (PlayerPrefs.GetInt("skin", 0) == 0)
-        {
             PlayerPrefs.SetInt($"thanos{PlayerPrefs.GetInt("skin", 0)}", PlayerPrefs.GetInt($"thanos{PlayerPrefs.GetInt("skin", 0)}", 0) + 1);
-        }
     }
 
     // Update is called once per frame

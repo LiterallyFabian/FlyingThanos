@@ -17,6 +17,7 @@ public class osuhero : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        PlayerPrefs.SetInt("osugames", PlayerPrefs.GetInt("osugames", 0) + 1);
     }
 
     void FixedUpdate()
@@ -36,10 +37,12 @@ public class osuhero : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             verticalSpeed = 250f;
+            PlayerPrefs.SetInt("osuboost", PlayerPrefs.GetInt("osuboost", 0) + 1);
         }
         else
         {
             verticalSpeed = 130f;
+            PlayerPrefs.SetInt("osudontboost", PlayerPrefs.GetInt("osudontboost", 0) + 1);
         }
 
         //När upp eller nedtangent är intryckt!

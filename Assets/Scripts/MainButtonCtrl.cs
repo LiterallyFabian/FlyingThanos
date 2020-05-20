@@ -57,6 +57,10 @@ public class MainButtonCtrl : MonoBehaviour
         InfoText.text = "SWARM\nMore and faster shurikens. Good luck!";
         TimerText.text = "time left: 60";
     }
+    public void GoToStart()
+    {
+        SceneManager.LoadScene(0);
+    }
     
     public void StartNormal()
     {

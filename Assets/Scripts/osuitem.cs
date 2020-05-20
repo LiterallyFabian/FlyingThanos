@@ -24,7 +24,7 @@ public class osuitem : MonoBehaviour
 
     void Update() 
     {
-        gameObject.transform.Translate(Vector3.right * -Speed * Time.deltaTime); //move obj
+        if(notcollected) gameObject.transform.Translate(Vector3.right * -Speed * Time.deltaTime); //move obj
 
         if (transform.position.x < -10.5 && notcollected) //miss
         {
@@ -34,6 +34,7 @@ public class osuitem : MonoBehaviour
                 catchSpawner.osumiss += catchcollision.largescore;
                 PlayerPrefs.SetInt("osucollects", PlayerPrefs.GetInt("osumax", 0) + catchcollision.largescore);
                 PlayerPrefs.SetInt("osucollects", PlayerPrefs.GetInt("osumiss", 0) + catchcollision.largescore);
+                PlayerPrefs.SetInt("osutotalmiss", PlayerPrefs.GetInt("osutotalmiss", 0) + catchcollision.largescore);
             }
             else
             {
@@ -41,9 +42,9 @@ public class osuitem : MonoBehaviour
                 catchSpawner.osumiss += catchcollision.smallscore;
                 PlayerPrefs.SetInt("osucollects", PlayerPrefs.GetInt("osumax", 0) + catchcollision.smallscore);
                 PlayerPrefs.SetInt("osucollects", PlayerPrefs.GetInt("osumiss", 0) + catchcollision.smallscore);
-
+                PlayerPrefs.SetInt("osutotalmiss", PlayerPrefs.GetInt("osutotalmiss", 0) + catchcollision.smallscore);
             }
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
     void OnTriggerEnter2D(Collider2D collider)
@@ -59,10 +60,15 @@ public class osuitem : MonoBehaviour
             else
                 GetComponent<AudioSource>().clip = normal;
             GetComponent<AudioSource>().Play();
-            Debug.Log(sound);
             GameObject.Find("/Canvas/acc").GetComponent<Animator>().Play("getbig", -1, 0);
         }
         notcollected = false; //collected
-        transform.position = new Vector3(10, 10, transform.position.z); //teleportera iväg föremålet men gör så ljudet spelas
+        transform.position = new Vector3(-10, transform.position.y, transform.position.z); //teleportera iväg föremålet men gör så ljudet spelas
+        StartCoroutine(DeleteSoon()); 
+    }
+    IEnumerator DeleteSoon()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(this.gameObject);
     }
 }

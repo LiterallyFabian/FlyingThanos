@@ -9,7 +9,7 @@ public class particleManager : MonoBehaviour {
 
     void Start () {
         //Om man har valt julskinnet så aktiveras snön
-        if (PlayerPrefs.GetInt("pvp", 0 ) == 5)
+        if (PlayerPrefs.GetInt("skin", 0 ) == 4)
         {
             SnowParticles.transform.position = new Vector3(4.1f, 6.56f, 0.8f);
         }

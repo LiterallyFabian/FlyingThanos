@@ -28,6 +28,7 @@ public class catchcollision : MonoBehaviour
             catchSpawner.osuscore += largescore;
             PlayerPrefs.SetInt("osucollects", PlayerPrefs.GetInt("osumax", 0) + largescore);
             PlayerPrefs.SetInt("osucollects", PlayerPrefs.GetInt("osucol", 0) + largescore);
+            PlayerPrefs.SetInt("osutotal", PlayerPrefs.GetInt("osutotal", 0) + largescore);
         }
         else
         {
@@ -35,6 +36,7 @@ public class catchcollision : MonoBehaviour
             catchSpawner.osuscore += smallscore;
             PlayerPrefs.SetInt("osucollects", PlayerPrefs.GetInt("osumax", 0) + smallscore);
             PlayerPrefs.SetInt("osucollects", PlayerPrefs.GetInt("osucol", 0) + smallscore);
+            PlayerPrefs.SetInt("osutotal", PlayerPrefs.GetInt("osutotal", 0) + smallscore);
 
         }
 

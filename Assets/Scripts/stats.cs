@@ -9,6 +9,7 @@ public class stats : MonoBehaviour
     public Text items;
     public Text other;
     public Text cosmetics;
+    public Text osu;
     public float accuracy;
     public float saccuracy;
     public double uptime;
@@ -20,6 +21,8 @@ public class stats : MonoBehaviour
         accuracy = PlayerPrefs.GetInt("collects", 0) * 100 / PlayerPrefs.GetInt("spawns", 1);
         saccuracy = (100 - (PlayerPrefs.GetInt("shurikens", 0) * 100 / PlayerPrefs.GetInt("shurikenspawns", 1)));
         uptime = (PlayerPrefs.GetInt("ups", 1)*100 / (PlayerPrefs.GetInt("ups", 1) + PlayerPrefs.GetInt("downs",0)));
+        float boosting = (PlayerPrefs.GetInt("osuboost", 0) * 100 / (PlayerPrefs.GetInt("osuboost", 1) + PlayerPrefs.GetInt("osudontboost", 1)));
+        float osuacc = (PlayerPrefs.GetInt("osutotal", 0) * 100 / (PlayerPrefs.GetInt("osutotal", 1) + PlayerPrefs.GetInt("osutotalmiss", 1)));
         items.text =
 			$"Burgers collected: {ez("burgers")}" +
 			$"\nSlurps collected: {ez("slurps")}" +
@@ -65,7 +68,12 @@ public class stats : MonoBehaviour
             $"\nMountain games: {ez("grassmap")}" +
             $"\nBeach games: {ez("beachmap")}" +
             $"\nSnow games: {ez("snowmap")}" +
-            $"\nSpooky games: {ez("spookymap")}";            
+            $"\nSpooky games: {ez("spookymap")}";
+        osu.text =
+            $"Games played: {ez("osugames")}" +
+            $"\nTime spent boosting: {boosting}%" +
+            $"\nOverall accuracy: {osuacc}%";
+
 
     }
 

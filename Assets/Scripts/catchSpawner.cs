@@ -103,7 +103,6 @@ public class catchSpawner : MonoBehaviour
             int delay = Convert.ToInt32(data[2]);
             int pos = Convert.ToInt32(data[1]);
             int hitsound = Convert.ToInt32(data[3]);
-            Debug.Log("hitsound: " + hitsound);
             int item = rnd.Next(4);
 
             if (i == AllFruitsArray.Length-1) StartCoroutine(goback(delay)); 
