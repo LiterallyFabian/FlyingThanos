@@ -132,7 +132,8 @@ public class MainButtonCtrl : MonoBehaviour
     }
     public void StartOsu(int n)
     {
-        catchSpawner.beatmap = maps[n-1];
+        if (n == 1) catchSpawner.beatmap = maps[UnityEngine.Random.Range(0, maps.Count-1)];
+        else catchSpawner.beatmap = maps[n-2];
         SceneManager.LoadScene(6);
         guiController.osu = true;
     }

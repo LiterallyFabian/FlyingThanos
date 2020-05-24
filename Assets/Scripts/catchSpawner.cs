@@ -17,6 +17,7 @@ public class catchSpawner : MonoBehaviour
     public static double osumiss;
     private GameObject[] items = new GameObject[4];
     public static string beatmap;
+    private bool effectcooldown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class catchSpawner : MonoBehaviour
         osumiss = 0;
         osumaxscore = 0;
         AddFruits();
+        AddEffects();
     }
 
     IEnumerator LoadAudio(int leadin, string songpath)
@@ -57,11 +59,9 @@ public class catchSpawner : MonoBehaviour
     }
     IEnumerator goback(int delay)
     {
-        Debug.LogError("back");
         yield return new WaitForSeconds(delay/1000+3.2f);
         SceneManager.LoadScene(0);
     }
-
     public void AddFruits()
     {
         System.Random rnd = new System.Random();
@@ -140,6 +140,50 @@ public class catchSpawner : MonoBehaviour
             { 
                 StartCoroutine(spawn(pos, delay, true, hitsound, item)); //spawn large item
             }
+        }
+    }
+    public void AddEffects()
+    {
+        string[] song = File.ReadAllLines($"{Application.dataPath}/songs/{beatmap}.osu");
+        bool foundobjects = false;
+        bool done = false;
+        List<string> AllEffectLines = new List<string>(); //lista  med alla lines under [TimingPoints]
+        for (int i = 0; i < song.Length; i++)
+        {
+            if (!foundobjects)
+            {
+                if (song[i] == "[TimingPoints]") //found the correct section, now start adding everything
+                    foundobjects = true;
+            }
+            else if (!done)
+            {
+
+                if (song[i] != "")
+                {
+                    AllEffectLines.Add(song[i]);
+                }
+                else done = true;
+            }
+        }
+        foreach (string i in AllEffectLines)
+        {
+            if (i.Split(',')[7] == "1")
+            {
+                StartCoroutine(Effect(Convert.ToInt32(i.Split(',')[0])));
+            }
+
+        }
+    }
+    IEnumerator Effect(int d)
+    {
+        yield return new WaitForSeconds(d / 1000);
+        if (!effectcooldown)
+        {
+            GameObject.Find("confettiR").GetComponent<ParticleSystem>().Play();
+            GameObject.Find("confettiL").GetComponent<ParticleSystem>().Play();
+            effectcooldown = true;
+            yield return new WaitForSeconds(7);
+            effectcooldown = false;
         }
     }
 }
