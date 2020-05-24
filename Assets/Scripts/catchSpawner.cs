@@ -16,6 +16,7 @@ public class catchSpawner : MonoBehaviour
     public static double osumaxscore;
     public static double osumiss;
     private GameObject[] items = new GameObject[4];
+    public static string beatmap;
 
     // Start is called before the first frame update
     void Start()
@@ -63,17 +64,12 @@ public class catchSpawner : MonoBehaviour
 
     public void AddFruits()
     {
-        string[] maps;
-        string[] songs;
-        string path = $"{Application.dataPath}/songs/";
-
-
-        maps = System.IO.Directory.GetFiles(path, "*.osu"); //load all the maps + audio
-        songs = System.IO.Directory.GetFiles(path, "*.ogg");
         System.Random rnd = new System.Random();
-        int selectedmap = rnd.Next(maps.Length);
-        Debug.Log($"Song picked: {maps[selectedmap]}\nRelated audio: {songs[selectedmap]}" );
-        string[] song = File.ReadAllLines(maps[selectedmap]);
+
+        string selectedSong = $"{Application.dataPath}/songs/{beatmap}.ogg";
+        string selectedMap = $"{Application.dataPath}/songs/{beatmap}.osu";
+        Debug.Log($"Song picked: {selectedMap}\nRelated audio: {selectedSong}" );
+        string[] song = File.ReadAllLines(selectedMap);
         bool foundobjects = false;
 
         List<string> AllFruitLines = new List<string>(); //lista  med alla lines under [HitObjects]
@@ -84,7 +80,7 @@ public class catchSpawner : MonoBehaviour
                 if (song[i].Contains("AudioLeadIn")) //sets leadin (how long the game should wait before playing)
                 {
                     string[] lead = song[i].Split(':');
-                    StartCoroutine(LoadAudio(Convert.ToInt32(lead[1]), songs[selectedmap]));
+                    StartCoroutine(LoadAudio(Convert.ToInt32(lead[1]), selectedSong));
                 }
                 if (song[i] == "[HitObjects]") //found the correct section, now start adding everything
                     foundobjects = true;    

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -23,6 +25,8 @@ public class MainButtonCtrl : MonoBehaviour
     public Sprite fr2;
     public Sprite fr3;
     public Sprite fr4;
+
+    List<string> maps;
     void Start()
     {
         TimerText = GameObject.Find("Timer").GetComponent<Text>();
@@ -41,6 +45,13 @@ public class MainButtonCtrl : MonoBehaviour
         backgroundMovement.backgroundSpeedBack = 0.02f;
         backgroundMovement.backgroundSpeedFront = 0.32f;
         backgroundMovement.backgroundSpeedMiddle = 0.23f;
+        maps = System.IO.Directory.GetFiles($"{Application.dataPath}/songs/", "*.osu").ToList();
+        for (int i = 0; i < maps.Count; i++)
+        {
+            maps[i] = Path.GetFileName(maps[i]);
+            maps[i] = maps[i].Replace(".osu", "");
+        }
+        GameObject.Find("Canvas/osu").GetComponent<Dropdown>().AddOptions(maps);
     }
 
     public void StartSwarm()
@@ -119,8 +130,9 @@ public class MainButtonCtrl : MonoBehaviour
         InfoText.text = "SHARP SHURIKENS\nLess points, sharper shurikens, no time limit";
         TimerText.text = "No time limit";
     }
-    public void StartOsu()
+    public void StartOsu(int n)
     {
+        catchSpawner.beatmap = maps[n-1];
         SceneManager.LoadScene(6);
         guiController.osu = true;
     }
