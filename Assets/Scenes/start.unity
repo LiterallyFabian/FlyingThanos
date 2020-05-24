@@ -3636,20 +3636,20 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.3
-  m_Text: 'Slow
+  m_Text: 'Spawn Slow
 
-    Double
+    Spawn Double
 
-    Shield
+    Spawn Shield
 
-    Repair
+    Spawn Repair
 
+    Spawn
     Timer
 
-    Virus
+    Spawn Virus
 
-    Enter
-    devmode
+    Enter devmode
 
     Exit devmode'
 --- !u!222 &1093582898

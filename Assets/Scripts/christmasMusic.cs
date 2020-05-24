@@ -12,12 +12,6 @@ public class christmasMusic : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
-		if(PlayerPrefs.GetInt("skin", 0) == 4)
-        {
-            GetComponent<AudioSource>().clip = julmusik;
-            GetComponent<AudioSource>().Play();
-        }
 		if(guiController.speedmode == true)
 		        {
             GetComponent<AudioSource>().clip = speedmusik;
@@ -28,11 +22,16 @@ public class christmasMusic : MonoBehaviour {
             GetComponent<AudioSource>().clip = halloween;
             GetComponent<AudioSource>().Play();
         }
-        if(PlayerPrefs.GetInt("skin", 1) == 1 && guiController.speedmode == false && PlayerPrefs.GetInt("skin", 0) != 4)
+        if(PlayerPrefs.GetInt("map", 1) == 1 && guiController.speedmode == false && PlayerPrefs.GetInt("skin", 0) != 4)
         {
             GetComponent<AudioSource>().clip = beachmusik;
             GetComponent<AudioSource>().Play();
             thanos.GetComponent<AudioSource>().volume = 0.2f;
+        }
+        if(PlayerPrefs.GetInt("skin", 0) == 4)
+        {
+            GetComponent<AudioSource>().clip = julmusik;
+            GetComponent<AudioSource>().Play();
         }
         else
         {

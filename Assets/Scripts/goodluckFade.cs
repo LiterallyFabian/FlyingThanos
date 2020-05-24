@@ -116,7 +116,7 @@ public class goodluckFade : MonoBehaviour
         }
         else
         {
-            heroController.verticalSpeed = 150;
+            heroController.verticalSpeed = 110;
         }
         flyingHitObjectsSpawn.spawninvterval = 0.3f;
         flyingHitObjectsMovement.Speed = 9;
@@ -145,7 +145,7 @@ public class goodluckFade : MonoBehaviour
         
         yield return new WaitForSeconds(1.45f);
         speedfade = false;
-        heroController.verticalSpeed = 200;
+        heroController.verticalSpeed = 150;
         backgroundMovement.backgroundSpeedBack = 0.3f;
         backgroundMovement.backgroundSpeedFront = 0.96f;
         backgroundMovement.backgroundSpeedMiddle = 0.69f;

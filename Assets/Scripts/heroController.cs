@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class heroController : MonoBehaviour 
 {
-    public static float verticalSpeed = 130.0f;
+    public static float verticalSpeed = 110.0f;
     public static float horizontalSpeed = 90.0f;
     private float yDir;
     public static float rotationSpeed = 150.0f;
