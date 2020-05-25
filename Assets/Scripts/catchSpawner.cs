@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using System;
 using UnityEngine.SceneManagement;
+using System.Globalization;
 
 public class catchSpawner : MonoBehaviour
 {
@@ -18,11 +19,13 @@ public class catchSpawner : MonoBehaviour
     private GameObject[] items = new GameObject[4];
     public static string beatmap;
     private bool effectcooldown = false;
+    NumberFormatInfo lang = new NumberFormatInfo();
 
     // Start is called before the first frame update
     void Start()
 
     {
+        lang.NumberDecimalSeparator = ".";
         items[0] = item;
         items[1] = item2;
         items[2] = item3;
@@ -113,7 +116,7 @@ public class catchSpawner : MonoBehaviour
                 if (rnd.Next(1) == 1) diff = diff * -1;
 
 
-                int sliderlength = Mathf.FloorToInt(float.Parse(data[7])); //slider length 
+                int sliderlength = Mathf.FloorToInt((float)Convert.ToDouble(data[7], lang)); //slider length 
                 int size = Mathf.RoundToInt(sliderlength / 19.5f) * repeats;
                 int where = 0;
                 bool dir = true;
