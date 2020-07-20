@@ -20,6 +20,7 @@ public class catchSpawner : MonoBehaviour
     public static string beatmap;
     private bool effectcooldown = false;
     NumberFormatInfo lang = new NumberFormatInfo();
+    public static string songPath;
 
     // Start is called before the first frame update
     void Start()
@@ -69,8 +70,8 @@ public class catchSpawner : MonoBehaviour
     {
         System.Random rnd = new System.Random();
 
-        string selectedSong = $"{Application.dataPath}/songs/{beatmap}.ogg";
-        string selectedMap = $"{Application.dataPath}/songs/{beatmap}.osu";
+        string selectedSong = $"{songPath}/{beatmap}.ogg";
+        string selectedMap = $"{songPath}/{beatmap}.osu";
         Debug.Log($"Song picked: {selectedMap}\nRelated audio: {selectedSong}" );
         string[] song = File.ReadAllLines(selectedMap);
         bool foundobjects = false;
@@ -147,7 +148,7 @@ public class catchSpawner : MonoBehaviour
     }
     public void AddEffects()
     {
-        string[] song = File.ReadAllLines($"{Application.dataPath}/songs/{beatmap}.osu");
+        string[] song = File.ReadAllLines($"{songPath}/{beatmap}.osu");
         bool foundobjects = false;
         bool done = false;
         List<string> AllEffectLines = new List<string>(); //lista  med alla lines under [TimingPoints]

@@ -29,6 +29,9 @@ public class MainButtonCtrl : MonoBehaviour
     List<string> maps;
     void Start()
     {
+        catchSpawner.songPath = $"{Application.dataPath}/songs";
+        if (Application.isEditor) catchSpawner.songPath = @"D:\Skrivbord\songs";
+
         TimerText = GameObject.Find("Timer").GetComponent<Text>();
         VbuckText = GameObject.Find("vbucktext").GetComponent<Text>();
         SlurpText = GameObject.Find("lmaotext").GetComponent<Text>();
@@ -45,7 +48,7 @@ public class MainButtonCtrl : MonoBehaviour
         backgroundMovement.backgroundSpeedBack = 0.02f;
         backgroundMovement.backgroundSpeedFront = 0.32f;
         backgroundMovement.backgroundSpeedMiddle = 0.23f;
-        maps = System.IO.Directory.GetFiles($"{Application.dataPath}/songs/", "*.osu").ToList();
+        maps = System.IO.Directory.GetFiles(catchSpawner.songPath, "*.osu").ToList();
         for (int i = 0; i < maps.Count; i++)
         {
             maps[i] = Path.GetFileName(maps[i]);
