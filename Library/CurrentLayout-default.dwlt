@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 16583
+  controlID: 106
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 16634
+  controlID: 38
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 16635
+  controlID: 39
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -211,8 +211,8 @@ MonoBehaviour:
     y: 0
     width: 1090
     height: 747
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 14}
@@ -399,7 +399,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 425efdff545efdffa461fdffb461fdff2262fdff3e62fdff4c63fdffc663fdffca63fdffa48bfdffda8bfdff1cbffdff68c0fdff5ed0fdffaed2fdffb6defdffb4eafdff84ebfdff98ebfdffeceefdff00effdff72effdff92effdffa4f0fdff22f1fdff2af1fdffc4f1fdffd6f6fdff3c11feff0c32feff1037ffff4237ffff663affff783affff08e3ffff96e4ffff6cfbffffee3f00002c400000d26400003ec1000060c10000c8ce0000eace0000a0d8000052d90000d4d9000012da0000
+      m_ExpandedIDs: 0ef3ffff20f3ffff74f6ffff88f6fffffaf6ffff1af7ffff2cf8ffffaaf8ffffb2f8ffff6cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -718,19 +718,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Resources
+  - Assets/Scripts
   m_LastFoldersGridSize: 96
   m_LastProjectPath: H:\DIGDIG\Unity Projekt\FlyingHero
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 04440000
-    m_LastClickedID: 17412
+    m_SelectedIDs: ca420000
+    m_LastClickedID: 17098
     m_ExpandedIDs: 00000000c8420000ca42000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -759,7 +759,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c8420000ca42000000ca9a3b
+    m_ExpandedIDs: 00000000c8420000ca420000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
