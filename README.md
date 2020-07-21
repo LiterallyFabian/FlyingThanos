@@ -11,8 +11,6 @@ Game based on [Flying Hero](https://youtu.be/zr4A0Rsxg1M) by Björn Granberg Ahlm
 
 ## Features
 
-
-
 - 7 different modes
 
 - 6 different skins
@@ -28,8 +26,6 @@ Game based on [Flying Hero](https://youtu.be/zr4A0Rsxg1M) by Björn Granberg Ahlm
 
 
 ### Modes
-
-
 
 - **Classic** - normal flying hero gameplay
 
@@ -51,7 +47,7 @@ Game based on [Flying Hero](https://youtu.be/zr4A0Rsxg1M) by Björn Granberg Ahlm
 
 
 
-![main](/github/main.png)
+![main](/github/main2.png)
 
 
 
