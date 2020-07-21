@@ -38,7 +38,7 @@ public class osuitem : MonoBehaviour
                 PlayerPrefs.SetInt("osucollects", PlayerPrefs.GetInt("osumiss", 0) + catchcollision.largescore);
                 PlayerPrefs.SetInt("osutotalmiss", PlayerPrefs.GetInt("osutotalmiss", 0) + catchcollision.largescore);
             }
-            else
+            else if(gameObject.tag == "small")
             {
                 catchSpawner.osumaxscore += catchcollision.smallscore;
                 catchSpawner.osumiss += catchcollision.smallscore;

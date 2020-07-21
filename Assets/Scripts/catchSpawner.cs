@@ -15,6 +15,7 @@ public class catchSpawner : MonoBehaviour
     public GameObject item3;
     public GameObject item4;
     public GameObject spinnerItem;
+    public GameObject spinnerItem2;
     public Animator FadeEffect;
     public GameObject background;
     public GameObject hero;
@@ -22,6 +23,7 @@ public class catchSpawner : MonoBehaviour
     public static double osumaxscore;
     public static double osumiss;
     private GameObject[] items = new GameObject[4];
+    private GameObject[] spinnerItems = new GameObject[2];
     public static string beatmap;
     private bool effectcooldown = false;
     NumberFormatInfo lang = new NumberFormatInfo();
@@ -39,6 +41,9 @@ public class catchSpawner : MonoBehaviour
         items[1] = item2;
         items[2] = item3;
         items[3] = item4;
+        spinnerItems[0] = spinnerItem;
+        spinnerItems[1] = spinnerItem2;
+
 
         spinner = false;
         party = false;
@@ -68,7 +73,7 @@ public class catchSpawner : MonoBehaviour
         Debug.Log("spawned spinner");
         spawnedSpinner = true;
         yield return new WaitForSeconds(0.05f);
-        Instantiate(spinnerItem, new Vector3(9.5f, UnityEngine.Random.Range(-4.6f, 4.6f), 1), Quaternion.identity);
+        Instantiate(spinnerItems[UnityEngine.Random.Range(0, 2)], new Vector3(9.5f, UnityEngine.Random.Range(-4.6f, 4.6f), 65), Quaternion.identity);
         spawnedSpinner = false;
     }
     IEnumerator LoadAudio(int leadin, string songpath)

@@ -25,6 +25,7 @@ TagManager:
   - cararrow
   - large
   - small
+  - spinner
   layers:
   - Default
   - TransparentFX
