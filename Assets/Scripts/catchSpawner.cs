@@ -14,6 +14,7 @@ public class catchSpawner : MonoBehaviour
     public GameObject item2;
     public GameObject item3;
     public GameObject item4;
+    public GameObject spinnerItem;
     public Animator FadeEffect;
     public GameObject background;
     public GameObject hero;
@@ -26,6 +27,8 @@ public class catchSpawner : MonoBehaviour
     NumberFormatInfo lang = new NumberFormatInfo();
     public static string songPath;
     public static bool party = false;
+    public static bool spinner = false;
+    private bool spawnedSpinner = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +40,7 @@ public class catchSpawner : MonoBehaviour
         items[2] = item3;
         items[3] = item4;
 
+        spinner = false;
         party = false;
         osuscore = 0;
         osumiss = 0;
@@ -53,8 +57,20 @@ public class catchSpawner : MonoBehaviour
             GameObject.Find("confettiR").GetComponent<ParticleSystem>().Play();
             GameObject.Find("confettiL").GetComponent<ParticleSystem>().Play();
         }
+        if(spinner && !spawnedSpinner)
+        {
+            StartCoroutine(SpawnSpinner());
+        }
+        Debug.Log(spinner);
     }
-
+    IEnumerator SpawnSpinner()
+    {
+        Debug.Log("spawned spinner");
+        spawnedSpinner = true;
+        yield return new WaitForSeconds(0.05f);
+        Instantiate(spinnerItem, new Vector3(9.5f, UnityEngine.Random.Range(-4.6f, 4.6f), 1), Quaternion.identity);
+        spawnedSpinner = false;
+    }
     IEnumerator LoadAudio(int leadin, string songpath)
     {
         WWW www = new WWW($"file://{songpath}");
@@ -156,11 +172,23 @@ public class catchSpawner : MonoBehaviour
 
                 StartCoroutine(spawn(pos + (where * diff), delay + (size + 1) * 40, true, hitsound, item)); //65 = no hitsound
             }
-            else //large item
+            else if(data[3] != "12")//large item
             { 
                 StartCoroutine(spawn(pos, delay, true, hitsound, item)); //spawn large item
             }
+            else
+            {
+                StartCoroutine(Spinner(delay, Convert.ToInt32(data[5])));
+            }
         }
+    }
+    IEnumerator Spinner(int start, int stop)
+    {
+        yield return new WaitForSeconds(start/1000);
+        spinner = true;
+
+        yield return new WaitForSeconds((stop - start) / 1000);
+        spinner = false;
     }
     public void AddEffects()
     {

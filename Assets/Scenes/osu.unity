@@ -10328,6 +10328,8 @@ MonoBehaviour:
   item2: {fileID: 1283987975555806, guid: e5af1fe3b65cf754896d9390632f8089, type: 3}
   item3: {fileID: 1283987975555806, guid: e1cc18990b1ac19499ff959b2683c11f, type: 3}
   item4: {fileID: 1283987975555806, guid: f87bc7df9db4a694db38175342c1fe1a, type: 3}
+  spinnerItem: {fileID: 1283987975555806, guid: a6ae51d2ac9bb704a87d8a392413f072,
+    type: 3}
   FadeEffect: {fileID: 977701272}
   background: {fileID: 1671667377}
   hero: {fileID: 1047213812}
