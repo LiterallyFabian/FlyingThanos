@@ -47,7 +47,12 @@ public class catchSpawner : MonoBehaviour
     private void Update()
     {
         background.GetComponent<Renderer>().material.SetColor("_Color", HSBColor.ToColor(new HSBColor(Mathf.PingPong(Time.time * 0.1f, 1), 0.4f, 1)));
-        if (Input.GetKeyDown(KeyCode.K)) ToggleParty(true);
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ToggleParty(true);
+            GameObject.Find("confettiR").GetComponent<ParticleSystem>().Play();
+            GameObject.Find("confettiL").GetComponent<ParticleSystem>().Play();
+        }
     }
 
     IEnumerator LoadAudio(int leadin, string songpath)
