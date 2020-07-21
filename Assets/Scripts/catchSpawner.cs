@@ -5,6 +5,7 @@ using System.IO;
 using System;
 using UnityEngine.SceneManagement;
 using System.Globalization;
+using UnityEngine.UI;
 
 public class catchSpawner : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class catchSpawner : MonoBehaviour
     public GameObject item2;
     public GameObject item3;
     public GameObject item4;
+    public Animator FadeEffect;
+    public GameObject background;
+    public GameObject hero;
     public static double osuscore;
     public static double osumaxscore;
     public static double osumiss;
@@ -21,6 +25,7 @@ public class catchSpawner : MonoBehaviour
     private bool effectcooldown = false;
     NumberFormatInfo lang = new NumberFormatInfo();
     public static string songPath;
+    public static bool party = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,11 +37,17 @@ public class catchSpawner : MonoBehaviour
         items[2] = item3;
         items[3] = item4;
 
+        party = false;
         osuscore = 0;
         osumiss = 0;
         osumaxscore = 0;
         AddFruits();
         AddEffects();
+    }
+    private void Update()
+    {
+        background.GetComponent<Renderer>().material.SetColor("_Color", HSBColor.ToColor(new HSBColor(Mathf.PingPong(Time.time * 0.1f, 1), 0.4f, 1)));
+        if (Input.GetKeyDown(KeyCode.K)) ToggleParty(true);
     }
 
     IEnumerator LoadAudio(int leadin, string songpath)
@@ -175,19 +186,47 @@ public class catchSpawner : MonoBehaviour
             {
                 StartCoroutine(Effect(Convert.ToInt32(i.Split(',')[0])));
             }
-
+            else 
+            {
+                StartCoroutine(RunEveryTimingPoint(Convert.ToInt32(i.Split(',')[0])));
+            }
         }
+    }
+    private void ToggleParty(bool enable)
+    {
+        if (enable == party) return;
+        else if (!enable)
+        {
+            party = false;
+            background.GetComponent<Animator>().Play("backgroundHide");
+        }
+        else
+        {
+            party = true;
+            background.GetComponent<Animator>().Play("backgroundShow");
+        }
+
+        Debug.Log($"Party mode {(enable ? "enabled" : "disabled")}");
     }
     IEnumerator Effect(int d)
     {
         yield return new WaitForSeconds(d / 1000);
+        ToggleParty(true);
+        FadeEffect.Play("fade", -1, 0);
         if (!effectcooldown)
         {
             GameObject.Find("confettiR").GetComponent<ParticleSystem>().Play();
             GameObject.Find("confettiL").GetComponent<ParticleSystem>().Play();
             effectcooldown = true;
-            yield return new WaitForSeconds(7);
+            yield return new WaitForSeconds(5);
             effectcooldown = false;
         }
+    }
+    IEnumerator RunEveryTimingPoint(int d)
+    {
+        yield return new WaitForSeconds(d / 1000);
+        ToggleParty(false);
+        FadeEffect.Play("fade", -1, 0);
+        Debug.Log("play");
     }
 }

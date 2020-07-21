@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor.SceneManagement;
 
 public class osuitem : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class osuitem : MonoBehaviour
         clap = (AudioClip)Resources.Load("sounds/hitclap8", typeof(AudioClip));
         normal = (AudioClip)Resources.Load("sounds/hitnormal0", typeof(AudioClip));
         PlayerPrefs.SetInt("spawns", PlayerPrefs.GetInt("spawns", 0) + 1);
+        if (catchSpawner.party && GetComponent<Animator>() != null)
+            GetComponent<Animator>().Play("fruitSpin");
     }
 
     void Update() 
@@ -46,6 +49,8 @@ public class osuitem : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
+        if (catchSpawner.party)
+            GetComponent<Renderer>().material.SetColor("_Color", HSBColor.ToColor(new HSBColor(Mathf.PingPong(Time.time * 0.4f, 1), 0.2f, 1)));
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -63,12 +68,10 @@ public class osuitem : MonoBehaviour
             GameObject.Find("/Canvas/acc").GetComponent<Animator>().Play("getbig", -1, 0);
         }
         notcollected = false; //collected
-        transform.position = new Vector3(-10, transform.position.y, transform.position.z); //teleportera iväg föremålet men gör så ljudet spelas
-        StartCoroutine(DeleteSoon()); 
-    }
-    IEnumerator DeleteSoon()
-    {
-        yield return new WaitForSeconds(3);
-        Destroy(this.gameObject);
+        transform.position = new Vector3(-6.5f, transform.position.y, -1);
+        if (catchSpawner.party && GetComponent<ParticleSystem>() != null) GetComponent<ParticleSystem>().Play();
+        Destroy(GetComponent<BoxCollider2D>());
+        GetComponent<SpriteRenderer>().color = Color.clear;
+        Destroy(this.gameObject, 3);
     }
 }
